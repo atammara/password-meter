@@ -2,7 +2,6 @@ import streamlit as st
 import re
 import random
 import string
-import pyperclip  # For copying text to clipboard
 
 # List of common weak passwords to blacklist
 COMMON_PASSWORDS = ["password", "123456", "qwerty", "admin", "letmein", "welcome", "password123"]
@@ -110,9 +109,7 @@ def main():
             if st.button("Generate a Strong Password"):
                 suggested_password = generate_strong_password(password_length)
                 st.write(f"🔒 Suggested Password: `{suggested_password}`")
-                if st.button("Copy to Clipboard"):
-                    pyperclip.copy(suggested_password)
-                    st.success("✅ Password copied to clipboard!")
+                st.code(suggested_password)  # Display password in a code block for easy copying
 
 # Run the app
 if __name__ == "__main__":
